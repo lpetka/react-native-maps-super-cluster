@@ -159,10 +159,10 @@ export default class ClusteredMapView extends PureComponent {
   }
 
   render() {
-    const { style, ...props } = this.props
+    const { style, MapComponent, ...props } = this.props
 
     return (
-      <MapView
+      <MapComponent
         {...props}
         style={style}
         ref={this.mapRef}
@@ -185,7 +185,7 @@ export default class ClusteredMapView extends PureComponent {
           !this.props.clusteringEnabled && this.props.data.map(d => this.props.renderMarker(d))
         }
         {this.props.children}
-      </MapView>
+      </MapComponent>
     )
   }
 }
@@ -234,5 +234,6 @@ ClusteredMapView.propTypes = {
   edgePadding: PropTypes.object.isRequired,
   // string
   // mutiple
-  accessor: PropTypes.oneOfType([PropTypes.string, PropTypes.func])
+  accessor: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+  MapComponent: PropTypes.node.isRequired
 }
